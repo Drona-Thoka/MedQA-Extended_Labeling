@@ -100,7 +100,7 @@ def main():
         continue
 
       specialty = label_case(case)
-      case["specialty"] = specialty
+      case["Specialty"] = specialty
 
       f.write(json.dumps(case) + "\n")  
       f.flush()
