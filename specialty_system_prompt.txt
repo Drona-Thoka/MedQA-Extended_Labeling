@@ -14,12 +14,15 @@ If your output is not exactly one of the listed specialties, the system will fai
 ## Only Allowed Specialties:
 
 Primary Care
-Internal Medicine
+Emergency Medicine
 Surgical Specialties
 Pediatrics
 Obstetrics & Gynecology
 Psychiatry
 Neurology  
 Radiology
-Pathology
-Anesthesiology
+Infectious Disease
+Oncology
+Dermatology
+Cardiopulmonary
+Gastroenterology

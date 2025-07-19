@@ -2,3 +2,4 @@ pandas
 openai
 python-dotenv
 time
+collections

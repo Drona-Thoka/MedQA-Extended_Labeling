@@ -7,21 +7,42 @@ from dotenv import load_dotenv
 import re
 import time
 import traceback
+from collections import Counter
+
 
 load_dotenv()
 client = OpenAI()
 print(f"API Key loaded: {'OPENAI_API_KEY' in os.environ}")
+specialty_counts = Counter()
 
 ALLOWED_SPECIALTIES = {
-"Primary Care", "Internal Medicine", "Surgical Specialties",
+"Primary Care", "Emergency Medicine", "Surgical Specialties",
 "Pediatrics", "Obstetrics & Gynecology", "Psychiatry",
-"Neurology", "Radiology", "Pathology",
-"Anesthesiology"
+"Neurology", "Radiology", "Infectious Disease",
+"Oncology", "Dermatology", "Cardiopulmonary",
+"Gastroenterology"
+}
+
+DIST_DICT = {
+   "Primary_Count" : 0,
+   "Emergency_Count" : 0,
+   "Sugrical_Count" : 0,
+   "Pediatrics_Count" : 0,
+   "OBGYN_Count" : 0,
+   "Psychiatry_Count" : 0,
+   "Neurology_Count" : 0,
+   "Radiology_Count" : 0,
+   "Infectious_Count" : 0,
+   "Oncology_Count" : 0,
+   "Dermatology_Count" : 0,
+   "CardioPul_Count" : 0,
+   "Gastro_Count" : 0
 }
 
 SYSTEM_PROMPT_PATH = Path("./specialty_system_prompt.txt")
 DATA_PATH = Path("./data/agentclinic_medqa_extended.jsonl")
 OUTPUT_PATH = Path("./data/agentclinic_medqa_extended_specialtylabeled.jsonl")
+#OUTPUT_PATH = Path("./data/test.jsonl")
 MODEL = "gpt-4"
 RATE_LIMIT_DELAY = 1.2
 
@@ -101,11 +122,11 @@ def main():
 
       specialty = label_case(case)
       case["Specialty"] = specialty
-
+      specialty_counts[specialty] += 1
       f.write(json.dumps(case) + "\n")  
       f.flush()
       print(f"Processed case {case['case_id']} → {specialty}")
 
   print(f"Saved labeled cases to {OUTPUT_PATH}")
-
+  print(f"Value Distribution: {specialty_counts}")
 main()
