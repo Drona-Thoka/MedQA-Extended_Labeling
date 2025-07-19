@@ -7,8 +7,9 @@ You will get 4 fields from a JSON file: 
 -Test Results: if applicable, any test/lab/image findings from the patient. 
 
 Based on this information, determine the **most appropriate medical specialty** that would typically handle the case. If the case appears interdisciplinary, choose the single specialty that would most likely take the lead.
-
-Output only the specialty name. Do not provide explanations, rationale, or formatting.
+Always choose one of the medical specialties below, do not ever ask for more information. Even if uncertain always choose from the list. DO NOT respond with "Not enough information".
+Output only the specialty name. Do not provide explanations, rationale, or formatting. 
+If your output is not exactly one of the listed specialties, the system will fail. Do not invent specialties.
 
 ## Only Allowed Specialties:
 
